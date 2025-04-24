@@ -88,11 +88,11 @@ let turn; // 1/-1 -> the player whose turn it is
 
   
 
-  function getWinner(colIdx, rowIdx){
-    return checkVertical(colIdx, rowIdx) || checkHorizontal(colIdx, rowIdx) ||
+    function getWinner(colIdx, rowIdx) {
+      return checkVertical(colIdx, rowIdx) || checkHorizontal(colIdx, rowIdx) ||
         checkBackslash(colIdx, rowIdx) || checkForwardslash(colIdx, rowIdx) ||
-        board.some((colArr) => colArr.includes(null)) ? null : 'Tie'
-  }
+        checkTie();
+    }
 
   function checkTie() {
     for (let colArr of board){
