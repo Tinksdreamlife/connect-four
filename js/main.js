@@ -14,6 +14,8 @@ let turn; // 1/-1 -> the player whose turn it is
 
   /*----- cached elements  -----*/
 
+  const msgEL = document.querySelector('h1');
+  const playAgainBtn = document.getElementById('play-again');
 
   /*----- event listeners -----*/
 
@@ -46,8 +48,28 @@ let turn; // 1/-1 -> the player whose turn it is
 
   function render(){
     renderBoard();
-    // renderMessage();
-    // renderControls();
+    renderMessage();
+    renderControls();
+  }
+
+  function renderControls() {
+    // ternary expression - use when you want to return one of two values
+    //<conditional expression> ? <truthy expression> : <falsy expression>
+    playAgainBtn.style.visibility = winner ? 'visible' : 'hidden';
+    //TODO: conditionally render the markers
+  }
+
+  function renderMessage() {
+    if (winner === null) {
+        msgEL.innerHTML = `<span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
+    } else if (winner === 'Tie') {
+        msgEL.innerHTML = "It's a Tie!"
+     
+    } else {
+        //There's a winner!
+        msgEL.innerHTML = `<span style="color: ${COLORS[winner]}">${COLORS[winner].toUpperCase()}</span>'s Wins!`;
+    }
+
   }
 
   function renderBoard() {
